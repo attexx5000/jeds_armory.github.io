@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalog | Jed’s Armory ⚔️</title>
+
+<style>
+  body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: "Trajan Pro", serif;
+    color: #f4e4bc;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(90deg, #3a2f1b, #1a1207);
+    color: #f5d67b;
+    text-align: center;
+    padding: 25px;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 0 10px #d4af37;
+  }
+  header h1 { margin: 0; font-size: 2em; }
+
+  nav {
+    background-color: #1b1407;
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #d4af37;
+  }
+  nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    font-weight: bold;
+    margin: 0 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  nav a:hover {
+    color: #fff8dc;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  .catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .item {
+    background-color: #2b2415;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(212,175,55,0.2);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(212,175,55,0.4);
+  }
+  .item img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+  }
+  .item h3 { color: #f5d67b; margin: 10px 0 5px; }
+  .item p { font-size: 0.9em; color: #c9a63b; }
+
+  .music {
+    text-align: center;
+    background-color: #1a1207;
+    padding: 30px;
+    border-top: 2px solid #d4af37;
+    margin-top: 40px;
+  }
+  .music h2 { color: #f5d67b; }
+  audio { margin-top: 10px; border: 2px solid #d4af37; border-radius: 8px; }
+
+  footer {
+    background-color: #1a1207;
+    text-align: center;
+    padding: 25px;
+    border-top: 2px solid #d4af37;
+    color: #d4af37;
+    margin-top: 20px;
+  }
+  footer nav a { text-decoration: none; color: #f5d67b; margin: 0 10px; }
+  footer nav a:hover { color: #fff; text-shadow: 0 0 10px #d4af37; }
+
+  /* Popup modals */
+  .modal {
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%, -50%);
+    background:#2b2415;
+    color:#f9f2d0;
+    border:2px solid #d4af37;
+    border-radius:10px;
+    padding:20px;
+    width:350px;
+    box-shadow:0 0 15px rgba(212,175,55,0.5);
+    text-align:center;
+    z-index:1000;
+  }
+  .modal button {
+    background:#d4af37; color:#1c150b; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;
+    margin-top:10px;
+  }
+
+  /* Popup overlays */
+  .overlay {
+    display:none;
+    position:fixed; top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    text-align:center;
+    z-index:1000;
+  }
+  .overlay .content {
+    background:#f4f0e6; color:#222;
+    width:80%; max-width:600px;
+    margin:80px auto; padding:20px;
+    border:3px solid #6b4b1f; border-radius:12px;
+    font-family:'Georgia',serif;
+    text-align:left;
+  }
+  .overlay h2 { color:#6b4b1f; text-align:center; }
+
+  .buy-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: #d4af37;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.purchased {
+  margin-top: 6px;
+  color: #9cff9c;
+  font-size: 0.9em;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jed’s Armory Catalog</h1>
+</header>
+
+<nav>
+  <a href="main.html">Home</a>
+  <a href="login.html">Account</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="bestiary.html">Bestiary</a>
+  <a href="#" id="aboutBtn">About</a>
+  <a href="#" id="contactBtn">Contact</a>
+</nav>
+
+<!-- About Modal -->
+<div id="aboutModal" class="modal">
+  <h2>⚔️ About Jed’s Armory ⚔️</h2>
+  <p>Welcome, warrior! Jed’s Armory is a forge of legendary weapons, where ancient craftsmanship meets digital artistry. Every blade, shield, and armor here represents the spirit of honor and courage.</p>
+  <button onclick="closeModal('aboutModal')">Close</button>
+</div>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal">
+  <h2>📜 Contact Us</h2>
+  <p>Need help with your order or wish to forge alliances?<br>
+  📧 <strong>support@jedsarmory.com</strong><br>
+  ☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')">Close</button>
+</div>
+
+<!-- Footer Popups -->
+<div id="privacyPopup" class="overlay">
+  <div class="content">
+    <h2>Privacy Policy</h2>
+    <p>Your privacy matters to us. We only use your data for processing orders and improving our services. We do not share personal information with third parties without your consent.</p>
+    <button id="closePrivacy">Close</button>
+  </div>
+</div>
+
+<div id="supportPopup" class="overlay">
+  <div class="content">
+    <h2>Support</h2>
+    <p>If you have any issues with your order or need help navigating our armory, please contact us at:</p>
+    <p>📧 <strong>support@jedsarmory.com</strong><br>☎️ +63 912 345 6789</p>
+    <button id="closeSupport">Close</button>
+  </div>
+</div>
+
+<div id="termsPopup" class="overlay">
+  <div class="content">
+    <h2>Terms and Conditions</h2>
+    <p>By purchasing from Jed’s Armory, you agree to our terms and conditions. All sales are final. The items are digital representations for catalog purposes and may not exist in reality. Jed’s Armory is not responsible for lost or misused items.</p>
+    <button id="closeTerms">Close</button>
+  </div>
+</div>
+
+<!-- Video Advertisement -->
+<section class="video-ad" style="width:70%; margin:40px auto; text-align:center;">
+  <div style="position:relative; padding-top:56.25%; border:4px solid #d4af37; border-radius:15px; box-shadow:0 0 15px rgba(212,175,55,0.4); overflow:hidden; width:90%; margin:auto;">
+    <video src="advert.mp4" controls autoplay muted loop style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; border-radius:15px;"></video>
+  </div>
+  <p style="color:#f9f3db; margin-top:15px; font-weight:bold; font-size:18px; background:rgba(0,0,0,0.75); border:2px solid #d4af37; border-radius:8px; padding:10px 15px; display:inline-block; box-shadow:0 0 12px rgba(212,175,55,0.4);">
+  🔥 <span style="color:#d4af37;">Limited-Time Offer!</span> Get the Legendary Mjolnir Today! 🔥
+  </p>
+</section>
+
+<!-- Search Bar -->
+<div style="text-align:center; margin:30px 0;">
+  <input type="text" id="searchInput" placeholder="Search weapons, armors, or shields... 🔍"
+    style="padding:12px 18px; width:60%; font-size:16px; border:2px solid #d4af37; border-radius:10px;
+    background:#1c150b; color:#f5d67b; box-shadow:0 0 10px rgba(212,175,55,0.3); outline:none; text-align:center;">
+</div>
+
+<!-- Products -->
+<section class="catalog" id="catalog">
+  <div class="item">
+    <img src="mjolnir.jpg" alt="Mjolnir">
+    <h3>Mjolnir</h3>
+    <p>The mighty hammer of Thor — said to summon thunder itself and crush the strongest of foes.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">5000</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="excalibur.jpg" alt="Excalibur">
+    <h3>Excalibur</h3>
+    <p>Legendary sword of King Arthur. Shines with divine light, a symbol of justice and honor.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">4200</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="katana.jpg" alt="Katana">
+    <h3>Japanese Katana</h3>
+    <p>Forged by ancient masters — a blade that slices with elegance and precision.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">2800</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="viking_axe.jpg" alt="Viking Axe">
+    <h3>Viking Axe</h3>
+    <p>A brutal tool of war, used by Norse raiders across stormy seas and icy battlefields.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">2200</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="knight_armor.jpg" alt="Knight Armor">
+    <h3>Knight Armor</h3>
+    <p>Full steel plate forged for protection and pride — the mark of a true knight.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">3600</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="round_shield.jpg" alt="Round Shield">
+    <h3>Round Shield</h3>
+    <p>Light yet strong, perfect for deflecting blades or smashing through enemy ranks.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">1800</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="crossbow.jpeg" alt="Crossbow">
+    <h3>Royal Crossbow</h3>
+    <p>A silent but deadly ranged weapon used by elite assassins and royal guards.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">2500</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+
+    <output class="total"></output>
+  </div>
+
+  <div class="item">
+    <img src="spartan_spear.jpeg" alt="Spartan Spear">
+    <h3>Spartan Spear</h3>
+    <p>Weapon of the legendary hoplites — precision, balance, and power in one.</p>
+    <p><strong>Price:</strong> 🪙 <span class="price">3100</span> gold coins</p>
+    <input type="number" class="qty" min="1" max="60" placeholder="Qty">
+    <button class="buy-btn">Buy</button>
+<p class="purchased"></p>
+    <output class="total"></output>
+  </div>
+</section>
+
+<script>
+  // Qty total calculator
+  document.querySelectorAll(".item").forEach(item => {
+    const qty = item.querySelector(".qty");
+    const price = parseFloat(item.querySelector(".price").textContent);
+    const total = item.querySelector(".total");
+    qty.addEventListener("input", () => {
+      const q = parseInt(qty.value);
+      if (!isNaN(q) && q > 0) total.textContent = "Total: 🪙 " + (q*price).toLocaleString() + " gold coins";
+      else total.textContent = "";
+    });
+  });
+
+  // Search functionality
+  document.getElementById("searchInput").addEventListener("input", function(){
+    const filter = this.value.toLowerCase();
+    document.querySelectorAll(".catalog .item").forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(filter) ? "" : "none";
+    });
+  });
+
+  // About & Contact
+  const aboutBtn = document.getElementById('aboutBtn');
+  const contactBtn = document.getElementById('contactBtn');
+  aboutBtn.onclick = () => document.getElementById('aboutModal').style.display = 'block';
+  contactBtn.onclick = () => document.getElementById('contactModal').style.display = 'block';
+  function closeModal(id){ document.getElementById(id).style.display='none'; }
+
+
+</script>
+
+<script>
+/* ===== ACCOUNT & PURCHASE SYSTEM ===== */
+
+// get logged in user
+const currentUser = localStorage.getItem("currentUser");
+
+// load accounts or create empty
+let accounts = JSON.parse(localStorage.getItem("accounts")) || {};
+
+// attach buy buttons
+document.querySelectorAll(".item").forEach(item => {
+  const buyBtn = item.querySelector(".buy-btn");
+  const qtyInput = item.querySelector(".qty");
+  const name = item.querySelector("h3").textContent;
+  const purchasedText = item.querySelector(".purchased");
+
+  // show already purchased
+  if (currentUser && accounts[currentUser]?.purchases?.[name]) {
+    purchasedText.textContent =
+      "Purchased: " + accounts[currentUser].purchases[name];
+  }
+
+  buyBtn.addEventListener("click", () => {
+    if (!currentUser) {
+      alert("Please login or signup first.");
+      return;
+    }
+
+    const qty = parseInt(qtyInput.value);
+    if (!qty || qty <= 0) {
+      alert("Enter a valid quantity.");
+      return;
+    }
+
+    // ensure account structure exists
+    if (!accounts[currentUser].purchases) {
+      accounts[currentUser].purchases = {};
+    }
+
+    // add purchase
+    accounts[currentUser].purchases[name] =
+      (accounts[currentUser].purchases[name] || 0) + qty;
+
+    // save
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+
+    purchasedText.textContent =
+      "Purchased: " + accounts[currentUser].purchases[name];
+  });
+});
+</script>
+
+<footer>
+
+<section class="music">
+  <h2>🎵 Jam Out to Some Medieval Tunes</h2>
+  <p>Set the mood while you browse our armory.</p>
+  <audio controls>
+    <source src="medieval_music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</section>
+
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+</body>
+</html>

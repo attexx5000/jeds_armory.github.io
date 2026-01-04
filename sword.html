@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swords of Legends | Jed’s Armory ⚔️</title>
+
+<style>
+  body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: "Trajan Pro", serif;
+    background-color: #121212;
+    color: #f4e4bc;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(90deg, #3a2f1b, #1a1207);
+    color: #f5d67b;
+    text-align: center;
+    padding: 25px;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 0 10px #d4af37;
+  }
+
+  nav {
+    background-color: #1b1407;
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #d4af37;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    font-weight: bold;
+    margin: 0 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  .sword-info {
+    width: 80%;
+    margin: 50px auto;
+    background-color: rgba(43, 36, 21, 0.95);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+    padding: 30px;
+    line-height: 1.6;
+  }
+
+  .sword-info img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 20px;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+  }
+
+  .sword-info h2 {
+    text-align: center;
+    color: #f5d67b;
+    margin-bottom: 15px;
+  }
+
+  .sword-info h3 {
+    color: #d4af37;
+    margin-top: 25px;
+  }
+
+  footer {
+    background-color: #1a1207;
+    text-align: center;
+    padding: 25px;
+    border-top: 2px solid #d4af37;
+    color: #d4af37;
+    margin-top: 60px;
+  }
+
+  footer nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    margin: 0 10px;
+  }
+
+  footer nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  /* Popup (About/Contact/Terms etc.) */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2b2415;
+    color: #f9f2d0;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    text-align: center;
+    z-index: 2000;
+  }
+
+  .modal button {
+    background: #d4af37;
+    color: #1c150b;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jed’s Armory Archives: Swords of Legends</h1>
+</header>
+
+<nav>
+  <a href="main.html">Home</a>
+   <a href="login.html">Account</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="bestiary.html">Bestiary</a>
+  <a href="#" id="aboutBtn">About</a>
+  <a href="#" id="contactBtn">Contact</a>
+</nav>
+
+
+<!-- ABOUT POPUP -->
+<div id="aboutModal" class="modal">
+  <h2>⚔️ About Jed’s Armory ⚔️</h2>
+  <p>Welcome, warrior! Jed’s Armory is where craftsmanship meets valor. Each sword represents centuries of tradition, forged with courage and sharpened by time.</p>
+  <button onclick="closeModal('aboutModal')">Close</button>
+</div>
+
+<!-- CONTACT POPUP -->
+<div id="contactModal" class="modal">
+  <h2>📜 Contact Us</h2>
+  <p>Need assistance or seeking custom blade commissions?<br>
+  📧 <strong>support@jedsarmory.com</strong><br>
+  ☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')">Close</button>
+</div>
+
+<script>
+  // Show modals
+  document.getElementById('aboutBtn').onclick = () => document.getElementById('aboutModal').style.display = 'block';
+  document.getElementById('contactBtn').onclick = () => document.getElementById('contactModal').style.display = 'block';
+  function closeModal(id){ document.getElementById(id).style.display = 'none'; }
+</script>
+
+<section class="sword-info">
+  <img src="excalibur.jpg" alt="Legendary Sword">
+  <h2>⚔️ The Legendary Sword</h2>
+  <p>
+    The <strong>Sword</strong> is the symbol of nobility, honor, and balance. Whether forged by European blacksmiths or Japanese swordmasters, it has always embodied precision and grace.
+    Blades like the <em>Katana</em> and <em>Claymore</em> are not mere tools of war — they are extensions of the warrior’s soul.
+  </p>
+
+  <h3>🛠️ Design and Craft</h3>
+  <p>
+    The blade’s composition was a matter of pride — steel folded and tempered to perfection. The katana’s curved edge allowed swift strikes,
+    while the longsword’s crossguard gave both offense and defense in equal measure. A true swordsman wielded balance, not fury.
+  </p>
+
+  <h3>🐉 Best Used Against:</h3>
+  <ul>
+    <li>Quick beasts — perfect for agile strikes and counterattacks.</li>
+    <li>Undead knights — slices through armor gaps with precision.</li>
+    <li>Dark sorcerers — reflects their dark energy with pure steel.</li>
+  </ul>
+
+  <h3>⚙️ Combat Tip:</h3>
+  <p>
+    Strike only when calm. A blade guided by rage will miss its mark — but one guided by discipline cuts through fate itself.
+  </p>
+</section>
+
+<footer>
+  <nav>
+    <a href="#" id="privacyLink">Privacy</a> |
+    <a href="#" id="supportLink">Support</a> |
+    <a href="#" id="termsLink">Terms</a>
+  </nav>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+
+<!-- POPUPS (Privacy, Support, Terms) -->
+<div id="privacyPopup" class="modal" style="width:80%; max-width:600px;">
+  <h2>🛡️ Privacy Policy 🛡️</h2>
+  <p>Your trust is our greatest treasure. We safeguard your data with the same vigilance as a knight guards their liege.</p>
+  <button onclick="closeModal('privacyPopup')">Close</button>
+</div>
+
+<div id="supportPopup" class="modal" style="width:80%; max-width:600px;">
+  <h2>⚒️ Support ⚒️</h2>
+  <p>Need help, warrior? Our forge masters are ready to assist you with orders, shipments, or enchantment upgrades.</p>
+  <button onclick="closeModal('supportPopup')">Close</button>
+</div>
+
+<div id="termsPopup" class="modal" style="width:80%; max-width:600px;">
+  <h2>⚔️ Terms & Services ⚔️</h2>
+  <p>By entering Jed’s Armory, you agree to honor and respect the ancient code of warriors. Weapons are for collection, display, or noble combat only.</p>
+  <button onclick="closeModal('termsPopup')">Close</button>
+</div>
+
+<script>
+  // Footer modals
+  const modals = {
+    privacyLink: 'privacyPopup',
+    supportLink: 'supportPopup',
+    termsLink: 'termsPopup'
+  };
+
+  for (const id in modals) {
+    document.getElementById(id).onclick = () => document.getElementById(modals[id]).style.display = 'block';
+  }
+
+  window.onclick = function(e) {
+    for (const key in modals) {
+      const popup = document.getElementById(modals[key]);
+      if (e.target === popup) popup.style.display = 'none';
+    }
+  };
+</script>
+
+</body>
+</html>
+

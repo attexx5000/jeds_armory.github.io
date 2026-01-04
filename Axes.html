@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viking Axe | Jed’s Armory ⚔️</title>
+
+<style>
+  body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: "Trajan Pro", serif;
+    background-color: #121212;
+    color: #f4e4bc;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(90deg, #3a2f1b, #1a1207);
+    color: #f5d67b;
+    text-align: center;
+    padding: 25px;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 0 10px #d4af37;
+  }
+
+  nav {
+    background-color: #1b1407;
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #d4af37;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    font-weight: bold;
+    margin: 0 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  /* Axe info section */
+  .axe-info {
+    width: 80%;
+    margin: 50px auto;
+    background-color: rgba(43, 36, 21, 0.95);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+    padding: 30px;
+    line-height: 1.6;
+  }
+
+  .axe-info img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 20px;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+  }
+
+  .axe-info h2 {
+    text-align: center;
+    color: #f5d67b;
+    margin-bottom: 15px;
+  }
+
+  .axe-info h3 {
+    color: #d4af37;
+    margin-top: 25px;
+  }
+
+  footer {
+    background-color: #1a1207;
+    text-align: center;
+    padding: 25px;
+    border-top: 2px solid #d4af37;
+    color: #d4af37;
+    margin-top: 60px;
+  }
+
+  footer nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    margin: 0 10px;
+  }
+
+  footer nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  /* Generic modal styling */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2b2415;
+    color: #f9f2d0;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    text-align: center;
+    z-index: 2000;
+  }
+
+  .modal button {
+    background: #d4af37;
+    color: #1c150b;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jed’s Armory Archives: The Viking Axe</h1>
+</header>
+
+<!-- Navigation Bar -->
+<nav style="text-align:center; background:#1c150b; padding:12px; border-bottom:3px solid #d4af37; box-shadow:0 0 10px rgba(212,175,55,0.3);">
+  <a href="main.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Home</a>
+  <a href="login.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Account</a>
+  <a href="catalog.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Catalog</a>
+  <a href="bestiary.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Bestiary</a>
+  <a href="#" id="aboutBtn" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">About</a>
+  <a href="#" id="contactBtn" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Contact</a>
+</nav>
+
+<style>
+  nav a:hover {
+    color: #fff8dc;
+    text-shadow: 0 0 10px #d4af37;
+  }
+</style>
+
+
+<!-- ABOUT POPUP -->
+<div id="aboutModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:#2b2415; color:#f9f2d0; border:2px solid #d4af37; border-radius:10px; padding:20px; width:350px;
+box-shadow:0 0 15px rgba(212,175,55,0.5); text-align:center; z-index:1000;">
+  <h2>⚔️ About Jed’s Armory ⚔️</h2>
+  <p>Welcome, warrior! Jed’s Armory is a forge of legendary weapons, where ancient craftsmanship meets digital artistry.
+  Every blade, shield, and armor here represents the spirit of honor and courage.</p>
+  <button onclick="closeModal('aboutModal')" style="background:#d4af37; color:#1c150b; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Close</button>
+</div>
+
+<!-- CONTACT POPUP -->
+<div id="contactModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:#2b2415; color:#f9f2d0; border:2px solid #d4af37; border-radius:10px; padding:20px; width:350px;
+box-shadow:0 0 15px rgba(212,175,55,0.5); text-align:center; z-index:1000;">
+  <h2>📜 Contact Us</h2>
+  <p>Need help with your order or wish to forge alliances?<br>
+  📧 <strong>support@jedsarmory.com</strong><br>
+  ☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')" style="background:#d4af37; color:#1c150b; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Close</button>
+</div>
+
+<!-- Script -->
+<script>
+  const aboutBtn = document.getElementById('aboutBtn');
+  const contactBtn = document.getElementById('contactBtn');
+
+  aboutBtn.addEventListener('click', () => {
+    document.getElementById('aboutModal').style.display = 'block';
+  });
+
+  contactBtn.addEventListener('click', () => {
+    document.getElementById('contactModal').style.display = 'block';
+  });
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
+
+<section class="axe-info">
+  <img src="viking_axe.jpg" alt="Viking Axe">
+  <h2>🪓 The Viking Axe</h2>
+  <p>
+    The <strong>Viking Axe</strong> was more than just a weapon — it was a symbol of craftsmanship, power, and the Norse spirit.
+    Unlike the double-headed axes seen in fantasy tales, real Viking axes were designed for speed, precision, and balance.
+    Forged from iron with wooden handles, they could split shields, cleave armor, or even be thrown in close combat.
+  </p>
+
+  <h3>🛠️ Design and Use</h3>
+  <p>
+    Axes were among the most common weapons in Viking society because they were simple to forge and maintain.
+    Warriors often modified farm tools into deadly battle axes by sharpening the edge and reinforcing the handle.
+    Elite fighters wielded the fearsome <em>Dane Axe</em> — a long, two-handed weapon capable of devastating wide swings.
+  </p>
+
+  <h3>🐉 Best Used Against:</h3>
+  <ul>
+    <li>Heavily armored trolls — crushes their thick hides.</li>
+    <li>Forest beasts — perfect for cleaving through dense fur and bone.</li>
+    <li>Undead warriors — its heavy swings break skeletal defenses.</li>
+  </ul>
+
+  <h3>⚙️ Combat Tip:</h3>
+  <p>
+    Swing with momentum, not brute force. Use the axe’s weight to guide your strikes.
+    A true warrior knows that control is deadlier than strength.
+  </p>
+</section>
+
+<footer>
+  <nav>
+    <a href="#" id="privacyLink">Privacy</a> |
+    <a href="#" id="supportLink">Support</a> |
+    <a href="#" id="termsLink">Terms</a>
+  </nav>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+
+<!-- Privacy Popup -->
+<div id="privacyPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">🛡️ Privacy Policy 🛡️</h2>
+    <p>
+      At Jed’s Armory, your privacy is sacred. We respect your trust and protect your information like a knight guards their honor.
+    </p>
+    <ul style="text-align:left;">
+      <li>We do not share your personal data with other kingdoms (or companies) without consent.</li>
+      <li>All transactions are encrypted and handled through secure channels.</li>
+      <li>Your browsing history and preferences are kept confidential within our armory walls.</li>
+      <li>Cookies may be used to enhance your experience but never to invade your privacy.</li>
+    </ul>
+    <p>Trust is our strongest shield. 🛡️</p>
+    <button id="closePrivacy" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<!-- Support Popup -->
+<div id="supportPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚒️ Support ⚒️</h2>
+    <p>
+      Need help, warrior? Our blacksmiths and scribes are ready to assist you with any issues regarding orders,
+      enchanted items, or refund requests.
+    </p>
+    <ul style="text-align:left;">
+      <li>Visit our <a href="https://gogetfunding.com/" target="_blank" style="color:#6b4b1f;">Support Page</a> for donations or inquiries.</li>
+      <li>Email our team at <strong>support@jedsarmory.com</strong> for direct assistance.</li>
+      <li>Response time may vary depending on battle schedules (usually within 24–48 hours).</li>
+    </ul>
+    <p>We’re here to keep your blades sharp and your heart strong. ⚒️</p>
+    <button id="closeSupport" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<!-- Terms Popup -->
+<div id="termsPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚔️ Terms & Services ⚔️</h2>
+    <p>
+      Welcome to Jed's Armory — a virtual store selling legendary weapons from medieval Europe and feudal Japan.
+      By using this website, you agree to the following:
+    </p>
+    <ul style="text-align:left;">
+      <li>All items displayed are for educational, decorative, or beast slaying purposes only.</li>
+      <li>We do not condone violence against fellow warriors. Weapons must only be used for slaying beasts.</li>
+      <li>Users must be of legal age to purchase any weapons or gear.</li>
+      <li>Your use of this site means you accept responsibility for following all local laws.</li>
+    </ul>
+    <p>Stay honorable, warrior. ⚔️</p>
+    <button id="closeTerms" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+  // Terms
+  const termsLink = document.getElementById('termsLink');
+  const termsPopup = document.getElementById('termsPopup');
+  const closeTerms = document.getElementById('closeTerms');
+
+  termsLink.onclick = function() { termsPopup.style.display = 'block'; };
+  closeTerms.onclick = function() { termsPopup.style.display = 'none'; };
+
+  // Privacy
+  const privacyLink = document.getElementById('privacyLink');
+  const privacyPopup = document.getElementById('privacyPopup');
+  const closePrivacy = document.getElementById('closePrivacy');
+
+  privacyLink.onclick = function() { privacyPopup.style.display = 'block'; };
+  closePrivacy.onclick = function() { privacyPopup.style.display = 'none'; };
+
+  // Support
+  const supportLink = document.getElementById('supportLink');
+  const supportPopup = document.getElementById('supportPopup');
+  const closeSupport = document.getElementById('closeSupport');
+
+  supportLink.onclick = function() { supportPopup.style.display = 'block'; };
+  closeSupport.onclick = function() { supportPopup.style.display = 'none'; };
+
+  // Close when clicking outside
+  window.onclick = function(e) {
+    if (e.target === termsPopup) termsPopup.style.display = 'none';
+    if (e.target === privacyPopup) privacyPopup.style.display = 'none';
+    if (e.target === supportPopup) supportPopup.style.display = 'none';
+  };
+</script>
+
+

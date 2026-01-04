@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Jed’s Armory ⚔️</title>
+
+<style>
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: "Trajan Pro", serif;
+  color: #f4e4bc;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(90deg, #3a2f1b, #1a1207);
+  text-align: center;
+  padding: 25px;
+  border-bottom: 3px solid #d4af37;
+  box-shadow: 0 0 10px #d4af37;
+}
+header h1 {
+  margin: 0;
+  color: #f5d67b;
+}
+
+/* NAV */
+nav {
+  background-color: #1b1407;
+  text-align: center;
+  padding: 12px;
+  border-bottom: 1px solid #d4af37;
+}
+nav a {
+  color: #f5d67b;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+/* FORM CONTAINER */
+.form-section {
+  max-width: 450px;
+  margin: 60px auto;
+  background: rgba(43, 36, 21, 0.95);
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(212,175,55,0.4);
+}
+
+.form-section h2 {
+  text-align: center;
+  color: #f5d67b;
+  margin-bottom: 20px;
+}
+
+/* FORM */
+fieldset {
+  border: 1px solid #d4af37;
+  padding: 20px;
+}
+legend {
+  padding: 0 10px;
+  color: #d4af37;
+}
+
+dl {
+  margin: 0;
+}
+dt {
+  margin-top: 15px;
+}
+dd {
+  margin-left: 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background: #1c150b;
+  border: 1px solid #d4af37;
+  border-radius: 6px;
+  color: #f5d67b;
+  font-family: inherit;
+}
+
+input::placeholder {
+  color: #c9a63b;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #d4af37;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #1c150b;
+}
+button:hover {
+  box-shadow: 0 0 12px #d4af37;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1a1207;
+  text-align: center;
+  padding: 25px;
+  border-top: 2px solid #d4af37;
+  color: #d4af37;
+}
+
+footer nav a {
+  color: #f5d67b;
+  text-decoration: none;
+  margin: 0 10px;
+}
+footer nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+/* MODALS */
+.modal {
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:#2b2415;
+  border:2px solid #d4af37;
+  border-radius:10px;
+  padding:20px;
+  text-align:center;
+  width:350px;
+  z-index:1000;
+}
+.modal button {
+  margin-top:10px;
+  padding:8px 15px;
+  background:#d4af37;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚔️ Warrior Login & Registration ⚔️</h1>
+</header>
+
+<nav>
+  <a href="main.html">Home</a>
+  <a href="login.html">Account</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="bestiary.html">Bestiary</a>
+  <a href="#" id="aboutBtn">About</a>
+  <a href="#" id="contactBtn">Contact</a>
+</nav>
+
+<!-- FORM -->
+<div class="form-section" id="authSection">
+
+  <h2>Join the Armory</h2>
+  <form>
+    <fieldset>
+      <legend>Warrior Information</legend>
+
+      <dt>Warrior Name</dt>
+<dd><input id="user" type="text" placeholder="Stoic the Vast" required></dd>
+
+<dt>Password</dt>
+<dd><input id="pass" type="password" placeholder="Secret Oath" required></dd>
+
+<dt>Country</dt>
+<dd><input id="country" type="country" placeholder="Norway" required></dd>
+
+ <dt>Zip Code:</dt>
+            <dd><input type="text" name="Zip" maxlength="10" placeholder="12345"></dd>
+
+<dt>Email</dt>
+<dd><input id="email" type="email" placeholder="warrior@guild.com" required></dd>
+
+<dt>Warrior Type</dt>
+<dd><input id="Type" type="type" placeholder="Knight" required></dd>
+
+
+      <button type="submit">Enter the Armory</button>
+    </fieldset>
+  </form>
+</div>
+
+<div class="form-section" id="accountSection" style="display:none;">
+  <h2>⚔️ Warrior Account</h2>
+  <p id="welcomeText"></p>
+
+  <h3>Your Purchases</h3>
+  <div id="purchaseList">No purchases yet.</div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- ABOUT MODAL -->
+<div id="aboutModal" class="modal">
+  <h2>About Jed’s Armory</h2>
+  <p>Where legendary warriors arm themselves with honor and steel.</p>
+  <button onclick="closeModal('aboutModal')">Close</button>
+</div>
+
+<!-- CONTACT MODAL -->
+<div id="contactModal" class="modal">
+  <h2>Contact</h2>
+  <p>📧 support@jedsarmory.com<br>☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')">Close</button>
+</div>
+
+
+<script>
+let accounts = JSON.parse(localStorage.getItem("accounts")) || {};
+let currentUser = localStorage.getItem("currentUser");
+
+const authSection = document.getElementById("authSection");
+const accountSection = document.getElementById("accountSection");
+
+// FORM SUBMIT → LOGIN OR SIGNUP
+document.querySelector("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const u = user.value.trim();
+  const p = pass.value.trim();
+  const eMail = email.value.trim();
+
+  if(!u || !p) return alert("Enter username and password");
+
+  // LOGIN
+  if(accounts[u]){
+    if(accounts[u].password !== p)
+      return alert("Wrong password");
+
+    localStorage.setItem("currentUser", u);
+    alert("Welcome back, " + u + "!");
+    location.href = "main.html";
+  }
+
+  // SIGNUP
+  else {
+    if(!eMail) return alert("Email required for new warriors");
+
+    accounts[u] = {
+      password: p,
+      email: eMail,
+      purchases: {}
+    };
+
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+    localStorage.setItem("currentUser", u);
+    alert("Account created! Welcome, " + u + "!");
+    location.href = "main.html";
+  }
+});
+
+// ACCOUNT PAGE VIEW
+if(currentUser && accounts[currentUser]){
+  authSection.style.display = "none";
+  accountSection.style.display = "block";
+
+  document.getElementById("welcomeText").textContent =
+    "Welcome, " + currentUser + "!";
+
+  let list = "";
+  const purchases = accounts[currentUser].purchases;
+
+  for(let item in purchases){
+    list += `<p>${item}: ${purchases[item]}</p>`;
+  }
+
+  document.getElementById("purchaseList").innerHTML =
+    list || "No purchases yet.";
+}
+
+// LOGOUT
+function logout(){
+  localStorage.removeItem("currentUser");
+  location.reload();
+}
+
+// MODALS
+function closeModal(id){
+  document.getElementById(id).style.display = "none";
+}
+aboutBtn.onclick = () => aboutModal.style.display = "block";
+contactBtn.onclick = () => contactModal.style.display = "block";
+</script>
+
+
+<footer>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small>
+</footer>
+
+</body>
+</html>
+
+

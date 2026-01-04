@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jed’s Armory ⚔️</title>
+
+<style>
+
+  body {
+    background-image: url('background.jpg'); /* your image name */
+    background-size: cover; /* makes it fill the screen */
+    background-repeat: no-repeat; /* stops it from repeating */
+    background-attachment: fixed; /* keeps it still while scrolling */
+    background-position: center; /* centers the image */
+  }
+
+
+/* Body */
+body {
+  font-family: "Trajan Pro", serif;
+  background-color: #121212;
+  color: #f4e4bc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #3a2f1b, #1a1207);
+  color: #f5d67b;
+  text-align: center;
+  padding: 25px;
+  border-bottom: 3px solid #d4af37;
+  box-shadow: 0 0 10px #d4af37;
+}
+
+header img {
+  width: 80px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+}
+
+/* Title group */
+hgroup h1 {
+  margin: 8px 0 0;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+hgroup h2 {
+  margin: 0;
+  font-size: 1em;
+  color: #c9a63b;
+}
+
+/* Navigation */
+nav {
+  background-color: #1b1407;
+  text-align: center;
+  padding: 12px;
+  border-bottom: 1px solid #d4af37;
+}
+nav a {
+  text-decoration: none;
+  color: #f5d67b;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+/* Article */
+article {
+  background-color: #2b2415;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.3);
+  padding: 20px;
+  margin: 20px auto;
+  width: 85%;
+}
+
+/* Table */
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #1a1207;
+  color: #f5d67b;
+}
+th, td {
+  border: 1px solid #d4af37;
+  padding: 10px;
+}
+th {
+  background-color: #3a2f1b;
+}
+
+/* SVG color changer */
+.color-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #d4af37;
+}
+.color-btn.active {
+  box-shadow: 0 0 20px #d4af37;
+}
+
+/* Star rating */
+#stars {
+  font-size: 30px;
+  color: #444;
+  cursor: pointer;
+}
+.star {
+  transition: color 0.2s;
+}
+
+/* Footer */
+footer {
+  background-color: #1a1207;
+  text-align: center;
+  padding: 15px;
+  border-top: 2px solid #d4af37;
+  margin-top: 40px;
+  color: #d4af37;
+}
+
+p:first-letter {
+  color: #d4af37;
+  font-size: xx-large;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.jpg" alt="Jed’s Armory Logo">
+  <hgroup>
+    <h1>Jed’s Armory</h1>
+    <h2>Forged in Fire, Tempered in Honor</h2>
+
+    <div id="userBar" style="text-align:center; padding:10px; color:#d4af37;"></div>
+
+<script>
+const accounts = JSON.parse(localStorage.getItem("accounts")) || {};
+const currentUser = localStorage.getItem("currentUser");
+
+if(currentUser && accounts[currentUser]){
+  document.getElementById("userBar").innerHTML =
+    "⚔️ Welcome back, <strong>" + currentUser + "</strong>";
+} else {
+  document.getElementById("userBar").innerHTML =
+    "⚔️ Welcome, Warrior";
+}
+</script>
+
+  </hgroup>
+</header>
+
+<!-- Navigation Bar -->
+<nav style="text-align:center; background:#1c150b; padding:12px; border-bottom:3px solid #d4af37; box-shadow:0 0 10px rgba(212,175,55,0.3);">
+  <a href="main.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Home</a>
+  <a href="login.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Account</a>
+  <a href="catalog.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Catalog</a>
+  <a href="bestiary.html" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Bestiary</a>
+  <a href="#" id="aboutBtn" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">About</a>
+  <a href="#" id="contactBtn" style="color:#d4af37; margin:0 18px; text-decoration:none; font-weight:bold; transition:0.3s;">Contact</a>
+</nav>
+
+<style>
+  nav a:hover {
+    color: #fff8dc;
+    text-shadow: 0 0 10px #d4af37;
+  }
+</style>
+
+
+<!-- ABOUT POPUP -->
+<div id="aboutModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:#2b2415; color:#f9f2d0; border:2px solid #d4af37; border-radius:10px; padding:20px; width:350px;
+box-shadow:0 0 15px rgba(212,175,55,0.5); text-align:center; z-index:1000;">
+  <h2>⚔️ About Jed’s Armory ⚔️</h2>
+  <p>Welcome, warrior! Jed’s Armory is a forge of legendary weapons, where ancient craftsmanship meets digital artistry.
+  Every blade, shield, and armor here represents the spirit of honor and courage.</p>
+  <button onclick="closeModal('aboutModal')" style="background:#d4af37; color:#1c150b; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Close</button>
+</div>
+
+<!-- CONTACT POPUP -->
+<div id="contactModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:#2b2415; color:#f9f2d0; border:2px solid #d4af37; border-radius:10px; padding:20px; width:350px;
+box-shadow:0 0 15px rgba(212,175,55,0.5); text-align:center; z-index:1000;">
+  <h2>📜 Contact Us</h2>
+  <p>Need help with your order or wish to forge alliances?<br>
+  📧 <strong>support@jedsarmory.com</strong><br>
+  ☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')" style="background:#d4af37; color:#1c150b; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Close</button>
+</div>
+
+<!-- Script -->
+<script>
+  const aboutBtn = document.getElementById('aboutBtn');
+  const contactBtn = document.getElementById('contactBtn');
+
+  aboutBtn.addEventListener('click', () => {
+    document.getElementById('aboutModal').style.display = 'block';
+  });
+
+  contactBtn.addEventListener('click', () => {
+    document.getElementById('contactModal').style.display = 'block';
+  });
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
+
+<article>
+  <h2>Welcome to the Armory</h2>
+  <p>Welcome, warrior. Inside this website lies blades, axes, and relics of heroes' tools for battle. Each <mark>weapon</mark> tells a story, and each <strong>strike</strong> writes your legacy.</p>
+</article>
+
+<!-- Sword Color Changer -->
+<div style="text-align:center; margin:30px auto;">
+  <svg id="myVector" viewBox="0 0 200 500" style="width:150px; height:auto;">
+    <!-- Sword Blade -->
+    <path class="colorable" d="M95 20 L105 20 L120 400 L80 400 Z" fill="#d4af37"/>
+    <!-- Guard -->
+    <rect x="60" y="400" width="80" height="15" fill="#444"/>
+    <!-- Handle -->
+    <rect x="90" y="415" width="20" height="60" fill="#222"/>
+    <!-- Pommel -->
+    <circle cx="100" cy="480" r="10" fill="#333"/>
+  </svg>
+
+  <div style="margin-top:12px; display:flex; justify-content:center; gap:12px;">
+    <button class="color-btn" data-color="#d4af37" style="background:#d4af37; width:30px; height:30px; border-radius:50%; border:none;"></button>
+    <button class="color-btn" data-color="#c0412d" style="background:#c0412d; width:30px; height:30px; border-radius:50%; border:none;"></button>
+    <button class="color-btn" data-color="#5a845a" style="background:#5a845a; width:30px; height:30px; border-radius:50%; border:none;"></button>
+    <button class="color-btn" data-color="#5a5a9e" style="background:#5a5a9e; width:30px; height:30px; border-radius:50%; border:none;"></button>
+  </div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.color-btn');
+  const sword = document.querySelector('.colorable');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const color = btn.getAttribute('data-color');
+      sword.setAttribute('fill', color);
+    });
+  });
+</script>
+
+
+<!-- Weapon Table -->
+<table>
+  <tr><th>Material</th><th>Weapon</th></tr>
+  <tr><td>Iron</td><td>Katana</td></tr>
+  <tr><td>Steel</td><td>Claymore</td></tr>
+  <tr><td>Obsidian</td><td>Shadow Dagger</td></tr>
+  <tr><td>Meteorite</td><td>Blade of the Fallen</td></tr>
+</table>
+
+<!-- Star rating -->
+<article style="text-align:center;">
+  <h2>Rate Our Craftsmanship</h2>
+  <div class="stars" id="stars">
+    <span class="star" data-index="1">★</span>
+    <span class="star" data-index="2">★</span>
+    <span class="star" data-index="3">★</span>
+    <span class="star" data-index="4">★</span>
+    <span class="star" data-index="5">★</span>
+  </div>
+  <p id="rating-value">Rating: 0 / 5</p>
+  <p id="clear" onclick="clearRating()" style="cursor:pointer; color:#d4af37;">Clear</p>
+</article>
+
+<!-- Meter Section -->
+<article style="width:85%; margin:40px auto; background:#2b2415; border:2px solid #d4af37; border-radius:10px; padding:20px; color:#f5e6b3; box-shadow:0 0 10px rgba(212,175,55,0.3);">
+  <h2 style="color:#d4af37; text-align:center;">🏰 Armory Stock Levels 🏰</h2>
+
+  <p><strong>Legendary Katanas:</strong></p>
+  <meter min="0" max="100" value="80" style="width:100%; height:20px;">50%</meter>
+  <details><summary>Details</summary>Still in abundant supply, forged weekly.</details>
+
+  <p><strong>Excalibur Swords:</strong></p>
+  <meter min="0" max="100" value="45" style="width:100%; height:20px;">35%</meter>
+  <details><summary>Details</summary>Running low — divine material is scarce this season.</details>
+
+  <p><strong>Viking Axes:</strong></p>
+  <meter min="0" max="100" value="60" style="width:100%; height:20px;">60%</meter>
+  <details><summary>Details</summary>Steady supply from northern forges.</details>
+
+  <p><strong>Knight Armors:</strong></p>
+  <meter min="0" max="100" value="35" style="width:100%; height:20px;">35%</meter>
+  <details><summary>Details</summary>Demand increasing among young knights — limited stock remains.</details>
+
+  <p><strong>Round Shields:</strong></p>
+  <meter min="0" max="100" value="70" style="width:100%; height:20px;">70%</meter>
+  <details><summary>Details</summary>Forged from sturdy oak and bronze — plentiful supply.</details>
+
+  <p><strong>Mjolnir:</strong></p>
+  <meter min="0" max="100" value="20" style="width:100%; height:20px;">20%</meter>
+  <details><summary>Details</summary>Almost out of stock — only a few worthy can wield it.</details>
+</article>
+
+<!-- Weapon Showcase Section -->
+<section style="text-align:center; margin:40px auto;">
+  <!-- Katana Ruby Text -->
+  <p style="font-size:1.2em;">
+    <ruby><rb>刀</rb><rt>Katana</rt></ruby> — the soul of the samurai.
+  </p>
+
+<!-- Image Map -->
+<div style="display:flex; justify-content:center; margin:20px 0;">
+  <img src="map.jpg" alt="Jed’s Armory Map" usemap="#armoryMap" width="300" height="300"
+       style="border:3px solid #d4af37; border-radius:10px; box-shadow:0 0 20px rgba(212,175,55,0.4);">
+</div>
+
+<map name="armoryMap">
+  <!-- Top-left: Axe -->
+  <area shape="rect" coords="0,0,150,150"
+        href="Axes.html"
+        alt="axes"
+        title="Battle Axes (Viking)">
+
+  <!-- Top-right: Sword -->
+  <area shape="rect" coords="150,0,300,150"
+        href="sword.html"
+        alt="swords"
+        title="Swords - Katanas, Claymores, and Blades">
+
+  <!-- Bottom-left: Armor -->
+  <area shape="rect" coords="0,150,150,300"
+        href="armor.html"
+        alt="armors"
+        title="Helmets and Armor Sets">
+
+  <!-- Bottom-right: Shield -->
+  <area shape="rect" coords="150,150,300,300"
+        href="shield.html"
+        alt="shields"
+        title="Shields - Round, Kite, and Tower Shields">
+</map>
+
+<!-- Description -->
+<div style="text-align:center; width:80%; max-width:600px; margin:25px auto; background:rgba(0,0,0,0.8);
+            border:2px solid #d4af37; border-radius:10px; padding:15px 20px; color:#f9f3db;
+            font-size:16px; line-height:1.5; box-shadow:0 0 12px rgba(212,175,55,0.4);">
+  🗺️ Explore the <strong>Jed’s Armory Map</strong> — click on each quadrant to uncover ancient weapons and armor.
+  Each section leads to relics forged with honor, skill, and history.
+</div>
+
+
+
+  <!-- ASCII Sword -->
+  <pre style="text-align:center; color:#d4af37; font-weight:bold; margin-top:20px;">
+         />_________________________________
+[########[]_________________________________>
+        \>
+  </pre>
+</section>
+
+<marquee behavior="scroll" direction="left" scrollamount="10">
+  <img src="dragon1.png" alt="Dragon 1" width="500">
+  <img src="dragon2.png" alt="Dragon 2" width="500">
+  <img src="dragon3.png" alt="Dragon 3" width="500">
+  <img src="dragon4.png" alt="Dragon 4" width="500">
+</marquee>
+
+
+<!-- Footer Navigation -->
+<footer>
+  <nav>
+    <a href="#" id="privacyLink">Privacy</a> |
+    <a href="#" id="supportLink">Support</a> |
+    <a href="#" id="termsLink">Terms</a>
+  </nav>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+
+<!-- Privacy Popup -->
+<div id="privacyPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">🛡️ Privacy Policy 🛡️</h2>
+    <p>
+      At Jed’s Armory, your privacy is sacred. We respect your trust and protect your information like a knight guards their honor.
+    </p>
+    <ul style="text-align:left;">
+      <li>We do not share your personal data with other kingdoms (or companies) without consent.</li>
+      <li>All transactions are encrypted and handled through secure channels.</li>
+      <li>Your browsing history and preferences are kept confidential within our armory walls.</li>
+      <li>Cookies may be used to enhance your experience but never to invade your privacy.</li>
+    </ul>
+    <p>Trust is our strongest shield. 🛡️</p>
+    <button id="closePrivacy" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<!-- Support Popup -->
+<div id="supportPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚒️ Support ⚒️</h2>
+    <p>
+      Need help, warrior? Our blacksmiths and scribes are ready to assist you with any issues regarding orders,
+      enchanted items, or refund requests.
+    </p>
+    <ul style="text-align:left;">
+      <li>Visit our <a href="https://gogetfunding.com/" target="_blank" style="color:#6b4b1f;">Support Page</a> for donations or inquiries.</li>
+      <li>Email our team at <strong>support@jedsarmory.com</strong> for direct assistance.</li>
+      <li>Response time may vary depending on battle schedules (usually within 24–48 hours).</li>
+    </ul>
+    <p>We’re here to keep your blades sharp and your heart strong. ⚒️</p>
+    <button id="closeSupport" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<!-- Terms Popup -->
+<div id="termsPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚔️ Terms & Services ⚔️</h2>
+    <p>
+      Welcome to Jed's Armory — a virtual store selling legendary weapons from medieval Europe and feudal Japan.
+      By using this website, you agree to the following:
+    </p>
+    <ul style="text-align:left;">
+      <li>All items displayed are for educational, decorative, or beast slaying purposes only.</li>
+      <li>We do not condone violence against fellow warriors. Weapons must only be used for slaying beasts.</li>
+      <li>Users must be of legal age to purchase any weapons or gear.</li>
+      <li>Your use of this site means you accept responsibility for following all local laws.</li>
+    </ul>
+    <p>Stay honorable, warrior. ⚔️</p>
+    <button id="closeTerms" style="margin-top:10px; padding:8px 16px; background:#6b4b1f; color:#fff;
+    border:none; border-radius:6px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+  // Terms
+  const termsLink = document.getElementById('termsLink');
+  const termsPopup = document.getElementById('termsPopup');
+  const closeTerms = document.getElementById('closeTerms');
+
+  termsLink.onclick = function() { termsPopup.style.display = 'block'; };
+  closeTerms.onclick = function() { termsPopup.style.display = 'none'; };
+
+  // Privacy
+  const privacyLink = document.getElementById('privacyLink');
+  const privacyPopup = document.getElementById('privacyPopup');
+  const closePrivacy = document.getElementById('closePrivacy');
+
+  privacyLink.onclick = function() { privacyPopup.style.display = 'block'; };
+  closePrivacy.onclick = function() { privacyPopup.style.display = 'none'; };
+
+  // Support
+  const supportLink = document.getElementById('supportLink');
+  const supportPopup = document.getElementById('supportPopup');
+  const closeSupport = document.getElementById('closeSupport');
+
+  supportLink.onclick = function() { supportPopup.style.display = 'block'; };
+  closeSupport.onclick = function() { supportPopup.style.display = 'none'; };
+
+  // Close when clicking outside
+  window.onclick = function(e) {
+    if (e.target === termsPopup) termsPopup.style.display = 'none';
+    if (e.target === privacyPopup) privacyPopup.style.display = 'none';
+    if (e.target === supportPopup) supportPopup.style.display = 'none';
+  };
+</script>
+
+
+
+<script>
+// STAR RATING
+const stars = document.querySelectorAll('.star');
+const ratingValue = document.getElementById('rating-value');
+let currentRating = 0;
+
+stars.forEach(star => {
+  star.addEventListener('click', () => {
+    currentRating = parseInt(star.getAttribute('data-index'));
+    updateStars();
+  });
+  star.addEventListener('mouseover', () => highlightStars(parseInt(star.getAttribute('data-index'))));
+  star.addEventListener('mouseout', updateStars);
+});
+
+function highlightStars(count) {
+  stars.forEach((star, index) => {
+    star.style.color = index < count ? '#d4af37' : '#444';
+  });
+}
+
+function updateStars() {
+  stars.forEach((star, index) => {
+    star.style.color = index < currentRating ? '#d4af37' : '#444';
+  });
+  ratingValue.textContent = `Rating: ${currentRating} / 5`;
+}
+
+function clearRating() {
+  currentRating = 0;
+  updateStars();
+}
+
+// SVG COLOR CHANGE
+const colorButtons = document.querySelectorAll('.color-btn'); // renamed variable
+const shapes = document.querySelectorAll('#myVector .colorable');
+
+function applyColor(hex) {
+  shapes.forEach(s => s.setAttribute('fill', hex));
+  colorButtons.forEach(b => b.classList.toggle('active', b.dataset.color.toLowerCase() === hex.toLowerCase()));
+}
+
+colorButtons.forEach(btn => btn.addEventListener('click', () => applyColor(btn.dataset.color)));
+if (colorButtons.length) applyColor(colorButtons[0].dataset.color);
+
+// Keyboard shortcut
+document.onkeydown = function(e) {
+  if (e.keyCode === 89) alert('Y pressed. Honor to you, warrior!');
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monster Bestiary | Jed’s Armory 🐉</title>
+
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Trajan Pro", serif;
+    color: #f4e4bc;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(90deg, #3a2f1b, #1a1207);
+    color: #f5d67b;
+    text-align: center;
+    padding: 25px;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 0 10px #d4af37;
+  }
+
+  nav {
+    background-color: #1b1407;
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #d4af37;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    font-weight: bold;
+    margin: 0 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  /* Main content wrapper */
+  main {
+    flex: 1;
+  }
+
+  /* Monster Card */
+  .monster-card {
+    width: 80%;
+    margin: 40px auto;
+    background-color: rgba(43, 36, 21, 0.95);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+    padding: 25px;
+    text-align: center;
+  }
+
+  .monster-card img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+  }
+
+  .monster-card h2 {
+    color: #f5d67b;
+    margin: 15px 0 10px;
+  }
+
+  .monster-info {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #d4af37;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .monster-info strong {
+    color: #d4af37;
+  }
+
+  /* Navigation Buttons */
+  .bestiary-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  .bestiary-nav button {
+    background: #d4af37;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1207;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .bestiary-nav button:hover {
+    background: #fff3b0;
+    box-shadow: 0 0 10px #d4af37;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    background-color: #1a1207;
+    color: #d4af37;
+    padding: 20px;
+    border-top: 2px solid #d4af37;
+  }
+
+  footer nav a {
+    color: #d4af37;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  footer nav a:hover {
+    color: #fff8dc;
+    text-shadow: 0 0 5px #d4af37;
+  }
+
+  /* Modals */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(43, 36, 21, 0.97);
+    color: #f4e4bc;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(212,175,55,0.5);
+    z-index: 1000;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+  }
+
+  .modal button {
+    background: #d4af37;
+    border: none;
+    padding: 8px 15px;
+    color: #1a1207;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .modal button:hover {
+    background: #fff3b0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jed’s Armory Bestiary 🐉</h1>
+</header>
+
+<nav>
+  <a href="main.html">Home</a>
+  <a href="login.html">Account</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="bestiary.html">Bestiary</a>
+  <a href="#" id="aboutBtn">About</a>
+  <a href="#" id="contactBtn">Contact</a>
+</nav>
+
+<main>
+  <!-- Monster Card -->
+  <section class="monster-card" id="monsterCard">
+    <img src="wyvern.jpg" alt="Wyvern">
+    <h2>Wyvern</h2>
+    <div class="monster-info">
+      <p><strong>Type:</strong> Dragonkin (Flying Beast)</p>
+      <p><strong>Habitat:</strong> Mountain peaks and volcanic regions</p>
+      <p><strong>Population:</strong> Very Rare</p>
+      <p><strong>Weakness:</strong> Ice spells and precise spear strikes to the chest</p>
+      <p><strong>Parts Used:</strong> Scales (armor), Talons (daggers), Heart (fire catalyst)</p>
+    </div>
+  </section>
+
+  <div class="bestiary-nav">
+    <button id="prevMonster">← Previous</button>
+    <button id="nextMonster">Next →</button>
+  </div>
+</main>
+
+<footer>
+  <nav>
+    <a href="#" id="privacyLink">Privacy</a> |
+    <a href="#" id="supportLink">Support</a> |
+    <a href="#" id="termsLink">Terms</a>
+  </nav>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+
+<!-- MODALS -->
+<div id="aboutPopup" class="modal">
+  <h2>🛡️ About Jed’s Armory</h2>
+  <p>Forged in the flames of passion for history and fantasy, Jed’s Armory offers both warriors and collectors an immersive experience of mythical weaponry and creatures.</p>
+  <button onclick="closeModal('aboutPopup')">Close</button>
+</div>
+
+<div id="contactPopup" class="modal">
+  <h2>📜 Contact Us</h2>
+  <p>Need assistance or want to suggest a new monster for the bestiary?<br>
+  Email us at <strong>support@jedsarmory.com</strong> or message our page directly.</p>
+  <button onclick="closeModal('contactPopup')">Close</button>
+</div>
+
+<div id="privacyPopup" class="modal">
+  <h2>🛡️ Privacy Policy</h2>
+  <p>Your trust is our treasure. We safeguard your data like knights guard their honor.</p>
+  <button onclick="closeModal('privacyPopup')">Close</button>
+</div>
+
+<div id="supportPopup" class="modal">
+  <h2>⚒️ Support</h2>
+  <p>Need help, warrior? Our forge masters are ready to assist with orders or enchantments.</p>
+  <button onclick="closeModal('supportPopup')">Close</button>
+</div>
+
+<div id="termsPopup" class="modal">
+  <h2>⚔️ Terms & Services</h2>
+  <p>By entering Jed’s Armory, you agree to uphold the code of warriors — honor, courage, and respect.</p>
+  <button onclick="closeModal('termsPopup')">Close</button>
+</div>
+
+<script>
+  // Bestiary Data
+  const monsters = [
+    { name: "Wyvern", img: "wyvern.jpg", type: "Dragonkin (Flying Beast)", habitat: "Mountain peaks", population: "Very Rare", weakness: "Ice spells", parts: "Scales, Talons, Heart" },
+    { name: "Dire Wolf", img: "direwolf.jpg", type: "Beast", habitat: "Frozen forests", population: "Uncommon", weakness: "Fire and piercing weapons", parts: "Fur, Fangs, Claws" },
+    { name: "Troll", img: "troll.jpg", type: "Giant", habitat: "Caves and swamps", population: "Rare", weakness: "Fire and sunlight", parts: "Bones, Hide, Blood" }
+  ];
+
+  let current = 0;
+  const card = document.getElementById('monsterCard');
+  const prevBtn = document.getElementById('prevMonster');
+  const nextBtn = document.getElementById('nextMonster');
+
+  function updateMonster() {
+    const m = monsters[current];
+    card.querySelector('img').src = m.img;
+    card.querySelector('h2').textContent = m.name;
+    card.querySelector('.monster-info').innerHTML = `
+      <p><strong>Type:</strong> ${m.type}</p>
+      <p><strong>Habitat:</strong> ${m.habitat}</p>
+      <p><strong>Population:</strong> ${m.population}</p>
+      <p><strong>Weakness:</strong> ${m.weakness}</p>
+      <p><strong>Parts Used:</strong> ${m.parts}</p>
+    `;
+  }
+
+  prevBtn.onclick = () => { current = (current - 1 + monsters.length) % monsters.length; updateMonster(); };
+  nextBtn.onclick = () => { current = (current + 1) % monsters.length; updateMonster(); };
+
+  // Modal Logic
+  const modals = {
+    aboutBtn: 'aboutPopup',
+    contactBtn: 'contactPopup',
+    privacyLink: 'privacyPopup',
+    supportLink: 'supportPopup',
+    termsLink: 'termsPopup'
+  };
+
+  for (const id in modals) {
+    const el = document.getElementById(id);
+    if (el) el.onclick = () => document.getElementById(modals[id]).style.display = 'block';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  window.onclick = e => {
+    for (const key in modals) {
+      const popup = document.getElementById(modals[key]);
+      if (e.target === popup) popup.style.display = 'none';
+    }
+  };
+</script>
+
+</body>
+</html>

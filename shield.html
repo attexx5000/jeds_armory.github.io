@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asgardian Shield | Jed’s Armory ⚔️</title>
+
+<style>
+  body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: "Trajan Pro", serif;
+    background-color: #121212;
+    color: #f4e4bc;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(90deg, #3a2f1b, #1a1207);
+    color: #f5d67b;
+    text-align: center;
+    padding: 25px;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 0 10px #d4af37;
+  }
+
+  nav {
+    background-color: #1b1407;
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #d4af37;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    font-weight: bold;
+    margin: 0 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  .armor-info {
+    width: 80%;
+    margin: 50px auto;
+    background-color: rgba(43, 36, 21, 0.95);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+    padding: 30px;
+    line-height: 1.6;
+  }
+
+  .armor-info img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 20px;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+  }
+
+  .armor-info h2 {
+    text-align: center;
+    color: #f5d67b;
+    margin-bottom: 15px;
+  }
+
+  .armor-info h3 {
+    color: #d4af37;
+    margin-top: 25px;
+  }
+
+  footer {
+    background-color: #1a1207;
+    text-align: center;
+    padding: 25px;
+    border-top: 2px solid #d4af37;
+    color: #d4af37;
+    margin-top: 60px;
+  }
+
+  footer nav a {
+    text-decoration: none;
+    color: #f5d67b;
+    margin: 0 10px;
+  }
+
+  footer nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #d4af37;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2b2415;
+    color: #f9f2d0;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    text-align: center;
+    z-index: 2000;
+  }
+
+  .modal button {
+    background: #d4af37;
+    color: #1c150b;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jed’s Armory Archives: Asgardian Shield</h1>
+</header>
+
+<nav>
+  <a href="main.html">Home</a>
+   <a href="login.html">Account</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="bestiary.html">Bestiary</a>
+  <a href="#" id="aboutBtn">About</a>
+  <a href="#" id="contactBtn">Contact</a>
+</nav>
+
+
+<div id="aboutModal" class="modal">
+  <h2>⚔️ About Jed’s Armory ⚔️</h2>
+  <p>Forged by passion and history — Jed’s Armory is a sanctuary of blades, armor, and legendary relics. Every crafted piece carries the legacy of valor and glory.</p>
+  <button onclick="closeModal('aboutModal')">Close</button>
+</div>
+
+<div id="contactModal" class="modal">
+  <h2>📜 Contact Us</h2>
+  <p>Have questions or need a custom shield forged?<br>
+  📧 <strong>support@jedsarmory.com</strong><br>
+  ☎️ +63 912 345 6789</p>
+  <button onclick="closeModal('contactModal')">Close</button>
+</div>
+
+<script>
+  const aboutBtn = document.getElementById('aboutBtn');
+  const contactBtn = document.getElementById('contactBtn');
+
+  aboutBtn.addEventListener('click', () => {
+    document.getElementById('aboutModal').style.display = 'block';
+  });
+
+  contactBtn.addEventListener('click', () => {
+    document.getElementById('contactModal').style.display = 'block';
+  });
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
+<section class="armor-info">
+  <img src="round_shield.jpg" alt="Asgardian Shield">
+  <h2>🛡️ The Asgardian Shield</h2>
+  <p>
+    The <strong>Asgardian Shield</strong> is a divine relic said to be forged in the fires of Nidavellir. Made from enchanted uru metal, it provides unmatched defense, capable of withstanding blows from gods and mortals alike.
+  </p>
+
+  <h3>🌌 Origins</h3>
+  <p>
+    Crafted by the legendary dwarven smiths, the shield was gifted to the protectors of Asgard. Its circular frame symbolizes eternity, while its surface reflects even the mightiest of attacks.
+  </p>
+
+  <h3>⚙️ Features</h3>
+  <ul>
+    <li><strong>Enchanted Core:</strong> Absorbs and redistributes impact force.</li>
+    <li><strong>Uru Alloy:</strong> A celestial metal resistant to magic and heat.</li>
+    <li><strong>Golden Crest:</strong> Embellished with Odin’s rune of protection.</li>
+  </ul>
+
+  <h3>🔥 Powers & Use</h3>
+  <ul>
+    <li>Deflects energy blasts and weapon strikes.</li>
+    <li>Can project a divine force barrier.</li>
+    <li>When wielded with valor, glows with celestial energy.</li>
+  </ul>
+
+  <h3>⚔️ Combat Tip:</h3>
+  <p>
+    Use the shield not just for defense but as a weapon — bash enemies, block spells, and channel divine energy through its runes. Courage and faith make it truly unbreakable.
+  </p>
+</section>
+
+<footer>
+  <nav>
+    <a href="#" id="privacyLink">Privacy</a> |
+    <a href="#" id="supportLink">Support</a> |
+    <a href="#" id="termsLink">Terms</a>
+  </nav>
+  <small>© 2025 Jed’s Armory. All Rights Reserved.</small><br>
+  <address>www.jedsarmory.com</address>
+</footer>
+
+<div id="privacyPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">🛡️ Privacy Policy 🛡️</h2>
+    <p>Your privacy is our sacred duty. Jed’s Armory keeps your information safe within fortified walls.</p>
+    <ul style="text-align:left;">
+      <li>No data is shared with foreign kingdoms (or third parties).</li>
+      <li>Transactions are protected by secure encryption spells.</li>
+      <li>Cookies enhance experience but never track your secrets.</li>
+    </ul>
+    <button id="closePrivacy" style="background:#6b4b1f; color:#fff; border:none; border-radius:6px; cursor:pointer; padding:8px 16px;">Close</button>
+  </div>
+</div>
+
+<div id="supportPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚒️ Support ⚒️</h2>
+    <p>Need assistance, warrior? Contact our smiths for order help, repairs, or donations.</p>
+    <ul style="text-align:left;">
+      <li>Visit our <a href="https://gogetfunding.com/" target="_blank" style="color:#6b4b1f;">Support Page</a>.</li>
+      <li>Email: <strong>support@jedsarmory.com</strong></li>
+    </ul>
+    <button id="closeSupport" style="background:#6b4b1f; color:#fff; border:none; border-radius:6px; cursor:pointer; padding:8px 16px;">Close</button>
+  </div>
+</div>
+
+<div id="termsPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.6); text-align:center; z-index:1000;">
+  <div style="background:#f4f0e6; color:#222; width:80%; max-width:600px; margin:80px auto; padding:20px;
+  border:3px solid #6b4b1f; border-radius:12px; font-family:'Georgia',serif;">
+    <h2 style="color:#6b4b1f;">⚔️ Terms & Services ⚔️</h2>
+    <p>By browsing Jed’s Armory, you agree to uphold the knight’s code of honor.</p>
+    <ul style="text-align:left;">
+      <li>All items are decorative or historical replicas.</li>
+      <li>No weapon shall be used against fellow warriors.</li>
+      <li>Users are responsible for complying with all regional laws.</li>
+    </ul>
+    <button id="closeTerms" style="background:#6b4b1f; color:#fff; border:none; border-radius:6px; cursor:pointer; padding:8px 16px;">Close</button>
+  </div>
+</div>
+
+<script>
+  const termsLink = document.getElementById('termsLink');
+  const termsPopup = document.getElementById('termsPopup');
+  const closeTerms = document.getElementById('closeTerms');
+  termsLink.onclick = () => termsPopup.style.display = 'block';
+  closeTerms.onclick = () => termsPopup.style.display = 'none';
+
+  const privacyLink = document.getElementById('privacyLink');
+  const privacyPopup = document.getElementById('privacyPopup');
+  const closePrivacy = document.getElementById('closePrivacy');
+  privacyLink.onclick = () => privacyPopup.style.display = 'block';
+  closePrivacy.onclick = () => privacyPopup.style.display = 'none';
+
+  const supportLink = document.getElementById('supportLink');
+  const supportPopup = document.getElementById('supportPopup');
+  const closeSupport = document.getElementById('closeSupport');
+  supportLink.onclick = () => supportPopup.style.display = 'block';
+  closeSupport.onclick = () => supportPopup.style.display = 'none';
+
+  window.onclick = e => {
+    if (e.target === termsPopup) termsPopup.style.display = 'none';
+    if (e.target === privacyPopup) privacyPopup.style.display = 'none';
+    if (e.target === supportPopup) supportPopup.style.display = 'none';
+  };
+</script>
+
+</body>
+</html>
